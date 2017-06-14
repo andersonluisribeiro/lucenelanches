@@ -6,7 +6,7 @@
 sudo sh install.sh
 ```
 
-O projeto utiliza o Spring Boot, Maven, Docker e Docker Compose V3 para automatizar o build e o deploy da aplicação. O script sobre dois containeres, um para a aplicação web JAVA e outra para o banco de dados MySql. A aplicação web roda na porta 8080 e o banco de dados na porta 3306 já com uma carga inicial. Após rodar o script é só acessar a aplicação assim: http://host:8080
+O projeto utiliza o Spring Boot, Maven, Docker e Docker Compose V3 para automatizar o build e o deploy da aplicação. O script sobre dois containeres, um para a aplicação web JAVA e outra para o banco de dados MySql. A aplicação web roda na porta 8080 e o banco de dados na porta 3306 já com uma carga inicial. Após rodar o script é só acessar a aplicação assim: http://localhost:8080/ se estiver no mesmo host.
 
 # Tecnologias utilizadas no projeto
 
