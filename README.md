@@ -6,6 +6,8 @@
 sudo sh install.sh
 ```
 
+O projeto utiliza o Spring Boot, Maven, Docker e Docker Compose V3 para automatizar o build e o deploy da aplicação.
+
 # Tecnologias utilizadas no projeto
 
 ## Spring Boot
@@ -74,6 +76,15 @@ Framework front-end com implementação de Material Design, possibilita:
 * Facilidades para trabalhar com Material Design
 * Componentes prontos e customizáveis
 * Integração com JQuery
+
+## Maven
+
+Ferramenta para gestão de dependências de projetos java, possibilita:
+
+* Gerenciar todas as dependências do projeto em um único arquivo
+* Automatizar o processo de deploy
+* Agilidade na configuração do projeto
+* Uniformidade no ambiente de desenvolvimento, produção e testes
  
 ## Docker
 
