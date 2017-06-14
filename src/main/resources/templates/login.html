@@ -12,51 +12,51 @@
 
 <body>
 	<div class="section"></div>
-  <main>
-    <center>
-      <div class="section"></div>
+	<main>
+		<center>
+			<div class="section"></div>
 
-      <h5 class="teal-text">Acesso ao Sistema</h5>
-      <div class="section"></div>
+			<h5 class="teal-text">Acesso ao Sistema</h5>
+			<div class="section"></div>
 
-      <div class="container">
-        <div class="z-depth-1 grey lighten-4 row form-container" style="padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+			<div class="container">
+				<div class="z-depth-1 grey lighten-4 row form-container" style="padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
-          <form th:action="@{/login}" method="post" id="login-form" class="col s12">
-            <div class='row'>
-              <div class='col s12'>
-              </div>
-            </div>
+					<form th:action="@{/login}" method="post" id="login-form" class="col s12">
+						<div class='row'>
+							<div class='col s12'>
+							</div>
+						</div>
 
-            <div class='row'>
-              <div class='input-field col s12'>
-                <input id="username" name="username" type="text" class="validate"></input>
-				<label for="username" data-error="Este campo é obrigatório">Usuário</label>
-              </div>
-            </div>
+						<div class='row'>
+							<div class='input-field col s12'>
+								<input id="username" name="username" type="text" class="validate"></input>
+								<label for="username" data-error="Este campo é obrigatório">Usuário</label>
+							</div>
+						</div>
 
-            <div class='row'>
-              <div class='input-field col s12'>
-                <input id="password" name="password" type="password" class="validate"></input>
+						<div class='row'>
+							<div class='input-field col s12'>
+								<input id="password" name="password" type="password" class="validate"></input>
 								<label for="password" data-error="Este campo é obrigatório">Senha</label>
-              </div>
-            </div>
-            <br />
-            
-            <div class='row'>
-              <button type='submit' name='btn_login' class='right col s4 btn btn-large waves-effect teal'>Login</button>
-            </div>
-            
-          </form>
-        </div>
-      </div>
-     
-    </center>
+							</div>
+						</div>
+						<br />
 
-    <div class="section"></div>
-    <div class="section"></div>
-  </main>
-	
+						<div class='row'>
+							<button type='submit' name='btn_login' class='right col s4 btn btn-large waves-effect teal'>Login</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+
+		</center>
+
+		<div class="section"></div>
+		<div class="section"></div>
+	</main>
+
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 </body>

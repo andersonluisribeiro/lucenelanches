@@ -12,25 +12,29 @@
 
 <body>
 	<nav>
-	    <div class="nav-wrapper grey lighten-4">
-	      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-	      <ul class="right hide-on-med-and-down">
-	      	<li><a href="/orders?lang=pt"><img width="48" src="images/bra.png"/></a></li>
-	      	<li><a href="/orders?lang=en"><img width="48" src="images/usa.png"/></a></li>
-	      	<li>
-		      	<form th:action="@{/logout}" method="post">
-		      		<input type="submit" class="btn waves-effect waves-light" th:value="#{button.gettout}" />
-		        </form>
-	        </li>
-	      </ul>
-	      <ul class="side-nav" id="mobile-demo">
-	        <li><a href="sass.html">Sass</a></li>
-	        <li><a href="badges.html">Components</a></li>
-	        <li><a href="collapsible.html">Javascript</a></li>
-	        <li><a class="btn waves-effect waves-light" href="buttons.html">Buttons</a></li>
-	      </ul>
-	    </div>
-	  </nav>
+		<div class="nav-wrapper grey lighten-4">
+			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+			<ul class="right hide-on-med-and-down">
+				<li>
+					<a href="/orders?lang=pt"><img width="48" src="images/bra.png" /></a>
+				</li>
+				<li>
+					<a href="/orders?lang=en"><img width="48" src="images/usa.png" /></a>
+				</li>
+				<li>
+					<form th:action="@{/logout}" method="post">
+						<input type="submit" class="btn waves-effect waves-light" th:value="#{button.gettout}" />
+					</form>
+				</li>
+			</ul>
+			<ul class="side-nav" id="mobile-demo">
+				<li><a href="sass.html">Sass</a></li>
+				<li><a href="badges.html">Components</a></li>
+				<li><a href="collapsible.html">Javascript</a></li>
+				<li><a class="btn waves-effect waves-light" href="buttons.html">Buttons</a></li>
+			</ul>
+		</div>
+	</nav>
 	<div class="container">
 		<div class="row">
 			<div class="col s7">
@@ -42,19 +46,19 @@
 								<input id="name" type="text" class="validate"></input>
 								<label for="name" data-error="Este campo é obrigatório" th:text="#{label.name}"></label>
 							</div>
-							
+
 						</div>
-						<div class="row">	
+						<div class="row">
 							<div class="input-field col s12">
 								<input id="address" type="text" class="validate"></input>
 								<label for="address" data-error="Este campo é obrigatório" th:text="#{label.address}"></label>
 							</div>
-						</div>	
-						<div class="row">	
+						</div>
+						<div class="row">
 							<div class="input-field col s3">
 								<label th:text="#{label.list_of_snacks}"></label>
 							</div>
-							
+
 							<div class="input-field col s9">
 								<select name="snacks-model" id="snacks-model">
 									<option>Selecione</option>
@@ -63,78 +67,78 @@
 						</div>
 
 						<div class="card">
-						<div class="card-content">
-						<div class="row">
-							<div class="input-field col s3">
-								<label th:text="#{label.type_of_bread}"></label>
-							</div>
+							<div class="card-content">
+								<div class="row">
+									<div class="input-field col s3">
+										<label th:text="#{label.type_of_bread}"></label>
+									</div>
 
-							<div class="input-field col s9">
-								
-								<select name="type-of-bread" id="type-of-bread">
+									<div class="input-field col s9">
+
+										<select name="type-of-bread" id="type-of-bread">
 									<option>Selecione</option>
 							    </select>
-							</div>
+									</div>
 
-							<div class="input-field col s3">
-								<label th:text="#{label.cheese}"></label>
-							</div>
-							<div class="input-field col s7">
-								<select name="cheese" id="cheese">
+									<div class="input-field col s3">
+										<label th:text="#{label.cheese}"></label>
+									</div>
+									<div class="input-field col s7">
+										<select name="cheese" id="cheese">
 									<option>Selecione</option>
 							    </select>
-							</div>
-							<div class="switch input-field col s2">
-								<label>
+									</div>
+									<div class="switch input-field col s2">
+										<label>
 							    	<span th:text="#{label.double}"></span>
 							      	<input type="checkbox" id="double-cheese"/>
 							      	<span class="lever"></span>
 							    </label>
-							</div>
-							<div class="input-field col s3">
-								<label th:text="#{label.filling}"></label>
-							</div>
-							<div class="input-field col s7">
-								<select name="filling" id="filling">  
+									</div>
+									<div class="input-field col s3">
+										<label th:text="#{label.filling}"></label>
+									</div>
+									<div class="input-field col s7">
+										<select name="filling" id="filling">
 									<option>Selecione</option>
 							    </select>
-							</div>
-							<div class="switch input-field col s2">
-								<label>
+									</div>
+									<div class="switch input-field col s2">
+										<label>
 							    	<span th:text="#{label.double}"></span>
 							      	<input type="checkbox" id="double-filling"/>
 							      	<span class="lever"></span>
 							    </label>
+									</div>
+								</div>
 							</div>
 						</div>
-						</div>
-						</div>
-						
+
 						<div class="card">
-						<div class="card-content checks-and-radios">
-						<div class="row salads-conteiner">
-							<div class="input-field col s2">
-								<label th:text="#{label.salad}"></label>
+							<div class="card-content checks-and-radios">
+								<div class="row salads-conteiner">
+									<div class="input-field col s2">
+										<label th:text="#{label.salad}"></label>
+									</div>
+								</div>
+
+								<div class="row sauces-container">
+									<div class="input-field col s2">
+										<label th:text="#{label.sauces}"></label>
+									</div>
+								</div>
+
+
+								<div class="row spices-container">
+									<div class="input-field col s2">
+										<label th:text="#{label.spices}"></label>
+									</div>
+								</div>
+
+
 							</div>
 						</div>
 
-						<div class="row sauces-container">
-							<div class="input-field col s2">
-								<label th:text="#{label.sauces}"></label>
-							</div>
-						</div>
-
-
-						<div class="row spices-container">
-							<div class="input-field col s2">
-								<label th:text="#{label.spices}"></label>
-							</div>
-						</div>
-
-						
-						</div>
-						</div>
-						
 						<div class="row">
 							<div class="input-field col s12 ">
 								<button class="btn right btn-price" id="btn-snack-price">R$ 0,00</button>
@@ -165,7 +169,7 @@
 							<form id="request-form" method="post" class="col s12">
 								<ul class="collection" id="snacks-container">
 								</ul>
-								<input type="hidden" name="request-size" id="request-size"/>
+								<input type="hidden" name="request-size" id="request-size" />
 							</form>
 						</div>
 						<div class="row">

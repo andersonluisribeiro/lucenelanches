@@ -1,0 +1,22 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7.18
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=lucenelanches
+    volumes:
+      - data-volume::/var/lib/mysql/
+    ports:
+      - "3306:3306"
+  web:
+    build: .
+    command: bundle exec rails s puma -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/lucenelanches/
+    links:
+      - db:mysql
+    ports:
+      - "8080:8080"
+volumes:
+  data-volume:
