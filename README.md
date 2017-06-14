@@ -83,6 +83,15 @@ Ferramenta para adminstração de conteineres, possibilita:
 * Escalar melhor a aplicação através de conteineres
 * Falicita o processo de deploy
 * O mesmo ambiente de desenvolvimento, produção e testes
+
+## Docker Compose V3
+
+Ferramenta para adminstração de conteineres, serviçoes e clusteres, possibilita:
+
+* Subir toda a stack da aplicação com apenas um comando
+* Criar uma receita para o deploy da aplicação
+* Integraço com o Docker Swarm
+* Escalar a aplicação com facilidade
  
 
 
