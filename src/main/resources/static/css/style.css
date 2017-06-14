@@ -1,0 +1,37 @@
+html{
+	font-size: 0.9em;
+}
+
+.container{
+	margin-top: 20px;
+}
+
+.radios{
+	display: flex;
+	justify-content: space-between;
+}
+
+.checks{
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn-save{
+	margin-left: 10px;
+}
+
+.btn-finish{
+	margin-left: 10px;
+}
+
+.snacks-container{
+	margin-botton: 0px;
+}
+
+.calculator-message{
+	margin-botton: 50px;
+}
+
+.calc-card{
+	min-height: 600px;
+}
