@@ -30,16 +30,6 @@ O Hibernate é um dos frameworks MVC mais utilizados no mundo java, com ele temo
 * Gerenciamento de sessões
 * Separação de camadas eficiente
 
-## JPA com Hibernate
-
-O Hibernate é um dos frameworks ORM mais utilizados no mundo java, com ele temos:
-
-* Agilidade no desenvolvimento de sistemas java com bancos de dados relacionais
-* Fácil mapeamento objeto relacional através de annotations
-* Nos permite trabalhar mais a orientação a objetos
-* Performance otimizada
-* Agilidade
-
 ## Spring Data
 
 Ferramental e abstração para persistência de dados, possibilita:
@@ -57,6 +47,16 @@ Ferramental e abstração para segurança de aplicações web, possibilita:
 * Código mai enxuto
 * Um excelente ferramental para segurança de aplicações web
 * Otimizado para performance
+
+## JPA com Hibernate
+
+O Hibernate é um dos frameworks ORM mais utilizados no mundo java, com ele temos:
+
+* Agilidade no desenvolvimento de sistemas java com bancos de dados relacionais
+* Fácil mapeamento objeto relacional através de annotations
+* Nos permite trabalhar mais a orientação a objetos
+* Performance otimizada
+* Agilidade
 
 ## JQuery
 
