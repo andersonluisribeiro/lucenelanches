@@ -12,19 +12,18 @@ $(document).ready( function() {
 	loadSalads();
 	loadSauces();
 	loadSpices();
-	
+
 	configureOnChangeSelects();
 	configureOnChangeChecksAndRadios();
 	configureOnChangeSnacksModel();
 	configureBtnSave();
 	configureBtnFinish();
-	
+
 });
 
 configureLang = function(){
 	searchParams = new URLSearchParams(window.location.search);
 	lang = searchParams.get('lang') == undefined ? lang : searchParams.get('lang');
-	console.log(lang);
 };
 
 configureSelects = function(){
@@ -94,9 +93,9 @@ loadSalads = function(){
 				</div>
 	    	`;
 	    	$saladsContainer.append(column);
-	    	
+
 	    });
-	    
+
 	    double = `
     		<div class="switch input-field col s2 right">
 				<label>
@@ -185,7 +184,6 @@ configureBtnFinish = function(){
 }
 
 updateSnackPrice = function(){
-	console.log("price update");
 	totalPrice = ( typeOfBreadPrice() + cheesePrice() + fillingPrice() + checksAndRadiosPrices() ).toFixed(2);
 	$("#btn-snack-price").text("R$ " + totalPrice );
 	pulseSnackPrice();
@@ -205,26 +203,26 @@ updateSnackFields = function(){
 	$typeOfBread = $("#type-of-bread");
 	$cheese = $("#cheese");
 	$filling = $("#filling");
-	
+
 	$.getJSON( "/snack_model", {id: snackId}, function( snackModel ) {
 		$typeOfBread.val(snackModel.typeOfBread.id);
 		$cheese.val(snackModel.cheese.id);
 		$filling.val(snackModel.filling.id);
-		
+
 		$( "input:checked" ).each( function(){
 			$(this).prop("checked", false);
 		});
-		
+
 		$("#salad-" + snackModel.salad.id).prop("checked", true);
-		
+
 		$.each( snackModel.sauces, function( key, sauce ) {
 			$("#sauce-" + sauce.id).prop("checked", true);
 		});
-		
+
 		$.each( snackModel.spices, function( key, spice ) {
 			$("#spice-" + spice.id).prop("checked", true);
 		});
-		
+
 		$typeOfBread.material_select();
 		$cheese.material_select();
 		$filling.material_select();
@@ -238,7 +236,6 @@ typeOfBreadPrice = function(){
 	if( $field.val() !== "Selecione" ){
 		price = Number( $("#type-of-bread option[value="+ $field.val() +"]").attr("price") );
 	}
-	console.log(price);
 	return price;
 }
 
@@ -251,7 +248,6 @@ cheesePrice = function(){
 			price += price;
 		}
 	}
-	console.log(price);
 	return price;
 }
 
@@ -264,7 +260,6 @@ fillingPrice = function(){
 			price += price;
 		}
 	}
-	console.log(price);
 	return price;
 }
 
@@ -274,25 +269,24 @@ checksAndRadiosPrices = function(){
 		if( $(this).attr("price") ){
 			total += Number( $(this).attr("price") );
 		}
-		
+
 		if( ($(this).attr("name") == "salad") && $("#double-salad").is(":checked") ){
 			total += Number( $(this).attr("price") );
 		}
-		
+
 	});
-	console.log(total);
 	return total;
 };
 
 pulseSnackPrice = function(){
-	$("#btn-snack-price").addClass("pulse");	
+	$("#btn-snack-price").addClass("pulse");
 	setTimeout(function(){
 		$("#btn-snack-price").removeClass("pulse");
     }, 300);
 };
 
 pulseRequestPrice = function(){
-	$("#btn-request-price").addClass("pulse");	
+	$("#btn-request-price").addClass("pulse");
 	setTimeout(function(){
 		$("#btn-request-price").removeClass("pulse");
     }, 300);
@@ -300,14 +294,14 @@ pulseRequestPrice = function(){
 
 addSnack = function(){
 	index = $("#snacks-container li").length;
-	hiddens = nameHidden( index ) + 
-				addressHidden( index ) + 
-				typeOfBreadHidden( index ) + 
-				cheeseHidden( index ) + 
-				fillingHidden( index ) + 
-				saladHidden( index ) + 
-				saucesHidden( index ) + 
-				spicesHidden( index ) + 
+	hiddens = nameHidden( index ) +
+				addressHidden( index ) +
+				typeOfBreadHidden( index ) +
+				cheeseHidden( index ) +
+				fillingHidden( index ) +
+				saladHidden( index ) +
+				saucesHidden( index ) +
+				spicesHidden( index ) +
 				snackPriceHidden( index );
 	bread = $('#type-of-bread').parent(["0"]).children()[1].value;
 	$("#snacks-container").append(`<li class="collection-item">${index + 1} - ${ bread }</li> ${hiddens}`);
@@ -356,7 +350,6 @@ spicesHidden = function( index ){
 };
 
 snackPriceHidden = function( index ){
-	console.log("price add");
 	price = ( typeOfBreadPrice() + cheesePrice() + fillingPrice() + checksAndRadiosPrices() ).toFixed(2);
 	return `<input type="hidden" class="snacks-prices" name="snack[${index}][price]" value="${ price }"/>`;
 };
@@ -383,7 +376,6 @@ validateMessage = function(){
 
 
 t = function(key){
-	console.log(lang);
 	messages = messagesArray();
 	if (messages[lang][key]) {
 	    return messages[lang][key];
@@ -403,7 +395,7 @@ messagesArray = function(){
 			"salt": "Salt",
 			"oregano": "Oregano",
 			"Selecione": "Select",
-			"validate_presence" : "This fields is required."	
+			"validate_presence" : "This fields is required."
 	};
 	messages["pt"] = {
 			"lettuce": "Alface",
@@ -419,5 +411,3 @@ messagesArray = function(){
 	};
 	return messages;
 }
-
-

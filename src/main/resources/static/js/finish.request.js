@@ -10,14 +10,13 @@ $(document).ready( function() {
 configureLang = function(){
 	searchParams = new URLSearchParams(window.location.search);
 	lang = searchParams.get('lang') == undefined ? lang : searchParams.get('lang');
-	console.log(lang);
 };
 
 configureAmountOfPeopleChange = function(){
 	$("#amount-of-people").on("change", function(){
 		amountOfPeople = $(this).val();
 		requestPrice = $("#request-price").val();
-		
+
 		updateValuePerPerson( requestPrice, amountOfPeople);
 		generatePeopleFields( requestPrice, amountOfPeople);
 	});
@@ -56,7 +55,7 @@ updateValue = function( requestPrice, percentage, $percentageField ){
 
 generatePeopleFields = function( requestPrice, amountOfPeople ){
 	$(".people-container .people").remove();
-	
+
 	for(i=0; i< amountOfPeople; i++){
 		$row = `
 			<div class="row people">
@@ -73,11 +72,10 @@ generatePeopleFields = function( requestPrice, amountOfPeople ){
 		`;
 		$(".people-container").append($row);
 	}
-	
+
 };
 
 t = function(key){
-	console.log(lang);
 	messages = messagesArray();
 	if (messages[lang][key]) {
 	    return messages[lang][key];
@@ -88,7 +86,7 @@ t = function(key){
 messagesArray = function(){
 	messages = ["pt", "en"];
 	messages["en"] = {
-			"person": "Person"			
+			"person": "Person"
 	};
 	messages["pt"] = {
 			"person": "Pessoa"

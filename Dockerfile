@@ -6,6 +6,6 @@ ADD . lucenelanches
 
 WORKDIR lucenelanches
 
-RUN mvn package && java -jar target/lucenelanches-0.1.0.jar
+RUN mvn package
 
 EXPOSE 8080
