@@ -7,12 +7,20 @@ import javax.persistence.Id;
 
 @Entity
 public class TypeOfSnack {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String description;
+
+	public TypeOfSnack() {
+
+	}
+
+	public TypeOfSnack(String description) {
+		this.description = description;
+	}
 
 	public Long getId() {
 		return id;
@@ -46,7 +54,5 @@ public class TypeOfSnack {
 			return false;
 		return true;
 	}
-	
-	
 
 }

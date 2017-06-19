@@ -7,14 +7,22 @@ import javax.persistence.Id;
 
 @Entity
 public class TypeOfBread {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String description;
-	
+
 	private Float price;
+
+	public TypeOfBread() {
+
+	}
+
+	public TypeOfBread(Float price) {
+		this.price = price;
+	}
 
 	public Long getId() {
 		return id;
@@ -52,7 +60,5 @@ public class TypeOfBread {
 			return false;
 		return true;
 	}
-	
-	
 
 }

@@ -93,21 +93,23 @@ loadSalads = function(){
 				</div>
 	    	`;
 	    	$saladsContainer.append(column);
-
 	    });
-
-	    double = `
-    		<div class="switch input-field col s2 right">
-				<label>
-			    	Dobrar
-			      	<input type="checkbox" id="double-salad"/>
-			      	<span class="lever"></span>
-			    </label>
-			 </div>
-    	`;
-	    $saladsContainer.append(double);
+	    loadDoubleSalad( $saladsContainer );  
 	});
-}
+};
+
+loadDoubleSalad = function( $saladsContainer ){
+	double = `
+		<div class="switch input-field col s2 right">
+			<label>
+		    	${ t("Dobrar") }
+		      	<input type="checkbox" id="double-salad"/>
+		      	<span class="lever"></span>
+		    </label>
+		 </div>
+	`;
+    $saladsContainer.append(double);
+};
 
 loadSauces = function(){
 	$saucesContainer = $(".sauces-container");
@@ -122,7 +124,7 @@ loadSauces = function(){
 	    	$saucesContainer.append(column);
 	    });
 	});
-}
+};
 
 loadSpices = function(){
 	$spicesContainer = $(".spices-container");
@@ -137,7 +139,7 @@ loadSpices = function(){
 	    	$spicesContainer.append(column);
 	    });
 	});
-}
+};
 
 configureBtnPrice = function(){
 	$(".btn-price").on( "click", function(e ) {
@@ -178,8 +180,14 @@ configureBtnSave = function(){
 configureBtnFinish = function(){
 	$(".btn-finish").on( "click", function(e){
 		e.preventDefault();
-		$("#request-size").val( $("#snacks-container li").length );
-		$("#request-form").submit();
+		requestSize = $("#snacks-container li").length;
+		if( requestSize > 0 ){
+			$("#request-size").val( requestSize );
+			$("#request-form").submit();
+		}else{
+			$("#snacks-container").parent().append( validateRequestMessage() );
+		}
+		
 	});
 }
 
@@ -233,7 +241,7 @@ updateSnackFields = function(){
 typeOfBreadPrice = function(){
 	$field = $("#type-of-bread");
 	price = 0;
-	if( $field.val() !== "Selecione" ){
+	if( isNumber( $field.val() ) ){
 		price = Number( $("#type-of-bread option[value="+ $field.val() +"]").attr("price") );
 	}
 	return price;
@@ -242,7 +250,7 @@ typeOfBreadPrice = function(){
 cheesePrice = function(){
 	$field = $("#cheese");
 	price = 0;
-	if( $field.val() !== "Selecione" ){
+	if( isNumber( $field.val() ) ){
 		price = Number( $("#cheese option[value="+ $("#cheese").val() +"]").attr("price") );
 		if( $("#double-cheese").is(":checked") ){
 			price += price;
@@ -254,13 +262,27 @@ cheesePrice = function(){
 fillingPrice = function(){
 	$field = $("#filling");
 	price = 0;
-	if( $field.val() !== "Selecione" ){
+	if( isNumber( $field.val() ) ){
 		price = Number( $("#filling option[value="+ $("#filling").val() +"]").attr("price") );
 		if( $("#double-filling").is(":checked") ){
 			price += price;
 		}
 	}
 	return price;
+}
+
+saladPrice = function(){
+	price = $("input[name='salad']:checked").val();
+	
+	if( $("#double-salad").is(":checked") ){
+		price += price;
+	}
+	
+	return price;
+}
+
+function isNumber( n ) {
+	return !isNaN( parseFloat(n) );
 }
 
 checksAndRadiosPrices = function(){
@@ -298,8 +320,11 @@ addSnack = function(){
 				addressHidden( index ) +
 				typeOfBreadHidden( index ) +
 				cheeseHidden( index ) +
+				doubleCheeseHidden( index ) +
 				fillingHidden( index ) +
+				doubleFillingHidden( index ) +
 				saladHidden( index ) +
+				doubleSaladHidden( index ) +
 				saucesHidden( index ) +
 				spicesHidden( index ) +
 				snackPriceHidden( index );
@@ -321,16 +346,39 @@ typeOfBreadHidden = function( index ){
 };
 
 cheeseHidden = function( index ){
-	return `<input type="hidden" name="snack[${index}][cheese]" value="${ $("#cheese").val() }"/>`;
+	cheese = $("#cheese").val();
+	if( isNumber(cheese) ){
+		return `<input type="hidden" name="snack[${index}][cheese]" value="${ $("#cheese").val() }"/>`;
+	}
+	return "";
+};
+
+doubleCheeseHidden = function( index ){
+	return `<input type="hidden" name="snack[${index}][doubleCheese]" value="${ $("#double-cheese").is(":checked") }"/>`;
 };
 
 fillingHidden = function( index ){
-	return `<input type="hidden" name="snack[${index}][filling]" value="${ $("#filling").val() }"/>`;
+	filling = $("#filling").val();
+	if( isNumber( filling ) ){
+		return `<input type="hidden" name="snack[${index}][filling]" value="${ $("#filling").val() }"/>`;
+	}
+	return "";
+};
+
+doubleFillingHidden = function( index ){
+	return `<input type="hidden" name="snack[${index}][doubleFilling]" value="${ $("#double-filling").is(":checked") }"/>`;
 };
 
 saladHidden = function( index ){
 	salad = $("input[name='salad']:checked").val();
-	return `<input type="hidden" name="snack[${index}][salad]" value="${ salad }"/>`;
+	if( salad != undefined ){
+		return `<input type="hidden" name="snack[${index}][salad]" value="${ salad }"/>`;
+	}
+	return "";
+}
+
+doubleSaladHidden = function( index ){
+	return `<input type="hidden" name="snack[${index}][doubleSalad]" value="${ $("#double-salad").is(":checked") }"/>`;
 };
 
 saucesHidden = function( index ){
@@ -363,17 +411,20 @@ validate = function(fields){
   for( i = 0; i < fields.length; i++ ){
     $field = $("#"+fields[i]);
     if($field.val() == "" || $field.val() == null || $field.val() == "Selecione" || $field.val() == "Select"){
-      $field.closest(".input-field").append(validateMessage());
+      $field.closest(".input-field").append(validatePresenceMessage());
       valid = false;
     }
   }
   return valid;
 };
 
-validateMessage = function(){
+validatePresenceMessage = function(){
 	return `<div class="chip validation">${ t("validate_presence") }</div>`;
 }
 
+validateRequestMessage = function(){
+	return `<div class="chip validation">${ t("validate_request") }</div>`;
+}
 
 t = function(key){
 	messages = messagesArray();
@@ -395,7 +446,9 @@ messagesArray = function(){
 			"salt": "Salt",
 			"oregano": "Oregano",
 			"Selecione": "Select",
-			"validate_presence" : "This fields is required."
+			"Dobrar": "Double",
+			"validate_presence" : "This fields is required.",
+			"validate_request" : "At least one snack must be selected for the order."
 	};
 	messages["pt"] = {
 			"lettuce": "Alface",
@@ -407,7 +460,9 @@ messagesArray = function(){
 			"salt": "Sal",
 			"oregano": "Orégano",
 			"Selecione": "Selecione",
-			"validate_presence" : "Este campo é obrigatório."
+			"Dobrar": "Dobrar",
+			"validate_presence" : "Este campo é obrigatório.",
+			"validate_request" : "Ao menos um lanche deve ser selecionado para o pedido."
 	};
 	return messages;
 }

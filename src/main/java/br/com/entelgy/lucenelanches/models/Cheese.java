@@ -15,6 +15,14 @@ public class Cheese {
 	private String description;
 
 	private Float price;
+	
+	public Cheese(){
+		
+	}
+	
+	public Cheese(Float price){
+		this.price = price;
+	}
 
 	public Long getId() {
 		return id;

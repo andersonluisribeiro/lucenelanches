@@ -1,5 +1,8 @@
 package br.com.entelgy.lucenelanches.controllers.parsers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import br.com.entelgy.lucenelanches.models.Cheese;
@@ -50,28 +53,73 @@ public class FormToSnack {
 	}
 
 	public Snack parse(){
-		TypeOfBread typeOfBread = typeOfBreadRepository.findOne(Long.parseLong( request.getParameter("snack[" + index + "][typeOfBread]") ) );
-		Cheese cheese = cheeseRepository.findOne( Long.parseLong( request.getParameter("snack[" + index + "][cheese]") ) );
-		Filling filling = fillingRepository.findOne( Long.parseLong( request.getParameter("snack[" + index + "][filling]") ) );
-		Salad salad = saladRepository.findOne( Long.parseLong( request.getParameter("snack[" + index + "][salad]") ) );
-		TypeOfSnack typeOfSnack = typeOfSnackRepository.findByDescription("normal");
-		Snack snack = new Snack(req, typeOfBread, cheese, filling, salad, typeOfSnack);
-		
-		for(String sauceId : request.getParameterValues("snack[" + index + "][sauces]")){
-			Sauce sauce = sauceRepository.findOne( Long.parseLong( sauceId ) );
-			snack.getSauces().add(sauce);
-		}
-		
-		for(String spiceId : request.getParameterValues("snack[" + index + "][spices]")){
-			Spice spice = spiceRepository.findOne( Long.parseLong( spiceId ) );
-			snack.getSpices().add(spice);
-		}
-		
+		Snack snack = new Snack(req, typeOfBreadParse(), cheeseParse(), doubleCheeseParse(), fillingParse(), 
+				doubleFillingParse(), saladParse(), doubleSaladParse(), typeOfSnackParse(), saucesParse(), spicesParse());
 		req.getSnacks().add(snack);
-		
 		return snack;
 	}
 	
+	public TypeOfBread typeOfBreadParse(){
+		return typeOfBreadRepository.findOne(Long.parseLong( request.getParameter("snack[" + index + "][typeOfBread]") ) );
+	}
+	
+	public Cheese cheeseParse(){
+		String value = request.getParameter("snack[" + index + "][cheese]");
+		return value == null? null : cheeseRepository.findOne( Long.parseLong( request.getParameter("snack[" + index + "][cheese]") ) );
+	}
+	
+	public boolean doubleCheeseParse(){
+		return Boolean.parseBoolean( request.getParameter("snack[" + index + "][doubleCheese]") );
+	}
+	
+	public Filling fillingParse(){
+		String value = request.getParameter("snack[" + index + "][filling]");
+		return value == null? null : fillingRepository.findOne( Long.parseLong( request.getParameter("snack[" + index + "][filling]") ) );
+	}
+	
+	public boolean doubleFillingParse(){
+		return Boolean.parseBoolean( request.getParameter("snack[" + index + "][doubleFilling]") );
+	}
+	
+	public Salad saladParse(){
+		String value = request.getParameter("snack[" + index + "][salad]");
+		return value == null? null : saladRepository.findOne( Long.parseLong( request.getParameter("snack[" + index + "][salad]") ) );
+	}
+	
+	public boolean doubleSaladParse(){
+		return Boolean.parseBoolean( request.getParameter("snack[" + index + "][doubleSalad]") );
+	}
+	
+	public TypeOfSnack typeOfSnackParse(){
+		return typeOfSnackRepository.findByDescription("normal");
+	}
+	
+	public List<Sauce> saucesParse(){
+		String[] values = request.getParameterValues("snack[" + index + "][sauces]");
+		if(values != null){
+			List<Sauce> sauces = new ArrayList<Sauce>();
+			for(String sauceId : values ){
+				Sauce sauce = sauceRepository.findOne( Long.parseLong( sauceId ) );
+				sauces.add(sauce);
+			}
+			return sauces;
+		}
+		return null;
+		
+	}
+	
+	public List<Spice> spicesParse(){
+		String[] values = request.getParameterValues("snack[" + index + "][spices]");
+		if( values != null ){
+			List<Spice> spices = new ArrayList<Spice>();
+			for(String spiceId : values){
+				Spice spice = spiceRepository.findOne( Long.parseLong( spiceId ) );
+				spices.add(spice);
+			}
+			return spices;
+		}
+		return null;
+	}
 	
 
 }

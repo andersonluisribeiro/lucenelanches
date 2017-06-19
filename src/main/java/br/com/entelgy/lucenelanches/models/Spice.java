@@ -15,6 +15,14 @@ public class Spice {
 	private String description;
 	
 	private Float price;
+	
+	public Spice(){
+		
+	}
+	
+	public Spice(Float price){
+		this.price = price;
+	}
 
 	public Long getId() {
 		return id;

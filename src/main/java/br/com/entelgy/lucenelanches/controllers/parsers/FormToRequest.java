@@ -16,9 +16,15 @@ public class FormToRequest {
 	}
 
 	public Request parse(){
-		String name = request.getParameter("snack[" + index + "][name]");
-		String address = request.getParameter("snack[" + index + "][address]");
-		return new Request(name, address);
+		return new Request(nameParse(), addressParse());
+	}
+	
+	public String nameParse(){
+		return request.getParameter("snack[" + index + "][name]");
+	}
+	
+	public String addressParse(){
+		return request.getParameter("snack[" + index + "][address]");
 	}
 	
 }

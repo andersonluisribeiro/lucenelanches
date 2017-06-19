@@ -36,6 +36,13 @@ public class Request {
 		this.name = name;
 		this.address = address;
 	}
+	
+	public Request(String name, String address, List<Snack> snacks) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.snacks = snacks;
+	}
 
 	public Long getId() {
 		return id;
@@ -55,7 +62,6 @@ public class Request {
 	
 	public Float getTotalPrice(){
 		Float total = 0f;
-		System.out.println( "Resultado: "+ getSnacks() );
 		for( Snack snack : getSnacks() ){
 			total += snack.getTotalPrice();
 		}

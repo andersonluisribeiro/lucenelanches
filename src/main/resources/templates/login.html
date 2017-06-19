@@ -11,12 +11,27 @@
 </head>
 
 <body>
+	<div class="preloader-background">
+		<div class="preloader-wrapper big active">
+			<div class="spinner-layer spinner-blue-only">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div>
+				<div class="gap-patch">
+					<div class="circle"></div>
+				</div>
+				<div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="section"></div>
 	<main>
 		<center>
 			<div class="section"></div>
 
-			<h5 class="teal-text">Acesso ao Sistema</h5>
+			<h5 class="teal-text">Lucene Lanches</h5>
 			<div class="section"></div>
 
 			<div class="container">
@@ -59,6 +74,12 @@
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+	<script>
+	$(document).ready( function() {
+		$('.preloader-background').delay(350).fadeOut('slow');
+		$('.preloader-wrapper').delay(350).fadeOut();
+	});
+	</script>
 </body>
 
 </html>

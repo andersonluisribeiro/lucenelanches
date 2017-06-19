@@ -15,6 +15,14 @@ public class Filling {
 	private String description;
 	
 	private Float price;
+	
+	public Filling(){
+		
+	}
+	
+	public Filling(Float price){
+		this.price = price;
+	}
 
 	public Long getId() {
 		return id;

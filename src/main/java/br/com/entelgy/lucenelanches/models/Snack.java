@@ -51,18 +51,33 @@ public class Snack {
 	private Float totalPrice;
 
 	public Snack() {
-		super();
 	}
 	
 	public Snack(Request request, TypeOfBread typeOfBread, Cheese cheese, Filling filling, Salad salad,
-			TypeOfSnack type) {
-		super();
+			TypeOfSnack type, List<Sauce> sauces, List<Spice> spices) {
 		this.request = request;
 		this.typeOfBread = typeOfBread;
-		this.cheese = cheese;
+		this.cheese = cheese;	
 		this.filling = filling;
 		this.salad = salad;
 		this.type = type;
+		this.sauces = sauces;
+		this.spices = spices;
+	}
+	
+	public Snack(Request request, TypeOfBread typeOfBread, Cheese cheese, boolean doubleCheese, Filling filling, boolean doubleFilling,
+			Salad salad,  boolean doubleSalad, TypeOfSnack type, List<Sauce> sauces, List<Spice> spices) {
+		this.request = request;
+		this.typeOfBread = typeOfBread;
+		this.cheese = cheese;	
+		this.doubleCheese = doubleCheese;
+		this.filling = filling;
+		this.doubleFilling = doubleFilling;
+		this.salad = salad;
+		this.doubleSalad = doubleSalad;
+		this.type = type;
+		this.sauces = sauces;
+		this.spices = spices;
 	}
 
 	public Long getId() {
@@ -74,18 +89,30 @@ public class Snack {
 	}
 
 	public TypeOfBread getTypeOfBread() {
+		if(typeOfBread == null){
+			return new NullTypeOfBread();
+		}
 		return typeOfBread;
 	}
 	
 	public Cheese getCheese() {
+		if(cheese == null){
+			return new NullCheese();
+		}
 		return cheese;
 	}
 
 	public Filling getFilling() {
+		if(filling == null){
+			return new NullFilling();
+		}
 		return filling;
 	}
 
 	public Salad getSalad() {
+		if(salad == null){
+			return new NullSalad();
+		}
 		return salad;
 	}
 	
@@ -106,10 +133,16 @@ public class Snack {
 	}
 
 	public List<Sauce> getSauces() {
+		if(sauces == null){
+			return new ArrayList<Sauce>();
+		}
 		return sauces;
 	}
 
 	public List<Spice> getSpices() {
+		if(spices == null){
+			return new ArrayList<Spice>();
+		}
 		return spices;
 	}
 	
@@ -125,16 +158,16 @@ public class Snack {
 		total += getSaladPrice();
 		total += getFillingPrice();
 		total += getSaucesPrice();
-		total += getSpicePrice();
+		total += getSpicesPrice();
 		this.totalPrice = total;
 	}
 	
 	public Float getTypeOfBreadPrice(){
-		return getTypeOfBread() == null ? 0f : getTypeOfBread().getPrice();
+		return getTypeOfBread().getPrice();
 	}
 	
 	public Float getCheesePrice(){
-		Float total = getCheese() == null ? 0f : getCheese().getPrice();
+		Float total = getCheese().getPrice();
 		if( getDoubleCheese() ){
 			total += total;
 		}
@@ -142,7 +175,7 @@ public class Snack {
 	}
 	
 	public Float getSaladPrice(){
-		Float total = getSalad() == null ? 0f : getSalad().getPrice();
+		Float total = getSalad().getPrice();
 		if( getDoubleSalad() ){
 			total += total;
 		}
@@ -150,7 +183,7 @@ public class Snack {
 	}
 	
 	public Float getFillingPrice(){
-		Float total = getFilling() == null? 0f : getFilling().getPrice();
+		Float total = getFilling().getPrice();
 		if( getDoubleFilling() ){
 			total += total;
 		}
@@ -165,7 +198,7 @@ public class Snack {
 		return total;
 	}
 	
-	public Float getSpicePrice(){
+	public Float getSpicesPrice(){
 		Float total = 0f;
 		for(Spice spice : getSpices()){
 			total += spice.getPrice();

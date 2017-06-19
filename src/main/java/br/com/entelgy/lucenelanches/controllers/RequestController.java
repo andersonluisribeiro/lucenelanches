@@ -81,16 +81,9 @@ public class RequestController {
 			if(req == null){
 				req = requestRepository.save( new FormToRequest(request, i).parse() );
 			}
-			Snack snack = new FormToSnack(request, 
-					req, 
-					i, 
-					typeOfBreadRepository, 
-					cheeseRepository, 
-					fillingRepository, 
-					saladRepository, 
-					typeOfSnackRepository, 
-					sauceRepository, 
-					spiceRepository).parse();
+			Snack snack = new FormToSnack(request, req, i, typeOfBreadRepository, cheeseRepository, fillingRepository, 
+					saladRepository, typeOfSnackRepository, sauceRepository, spiceRepository)
+					.parse();
 			snackRepository.save(snack);
 			
 		}

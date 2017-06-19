@@ -15,6 +15,14 @@ public class Salad {
 	private String description;
 	
 	private Float price;
+	
+	public Salad(){
+		
+	}
+	
+	public Salad(Float price){
+		this.price = price;
+	}
 
 	public Long getId() {
 		return id;
