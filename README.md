@@ -6,7 +6,7 @@
 sudo sh install.sh
 ```
 
-O projeto utiliza o Spring Boot, Maven, Docker e Docker Compose V3 para automatizar o build e o deploy da aplicação. O script sobe dois containeres, um para a aplicação web JAVA e outra para o banco de dados MySql. A aplicação web roda na porta 8080 e o banco de dados na porta 3306 já com uma carga inicial. Após rodar o script é só acessar a aplicação em http://localhost:8080/orders/ se estiver no mesmo host.
+O projeto utiliza o Spring Boot, Maven, Docker e Docker Compose V3 para automatizar o build e o deploy da aplicação. O script sobe dois containeres, um para a aplicação web JAVA e outra para o banco de dados MySql. A aplicação web roda na porta 8080 e o banco de dados na porta 3306 já com uma carga inicial. Após rodar o script é só acessar a aplicação em http://localhost:8080/orders/ se estiver no mesmo host. O usuário que foi carregado no banco de dados para acessar o sistema é "anderson" e a senha "12"
 
 # Tecnologias utilizadas no projeto
 
@@ -22,10 +22,10 @@ Agilidade no desenvolvimento de aplicações e serviços java, um excelente ferr
 
 ## Spring MVC
 
-O Hibernate é um dos frameworks MVC mais utilizados no mundo java, com ele temos:
+Um dos frameworks MVC mais utilizados no mundo java, com ele temos:
 
 * Agilidade no desenvolvimento de sistemas Java Web
-* Fácil mapeamento objeto relacional através de annotations
+* Fácil configuração
 * Injeção de dependências
 * Gerenciamento de sessões
 * Separação de camadas eficiente
